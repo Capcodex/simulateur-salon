@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation visite salon</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎟️ Simulateur de visite à un salon d'art</h1>
+    <p>Estimez en quelques clics le coût total de votre déplacement professionnel.</p>
+
+    <form id="simulateur-form">
+      <div class="form-group">
+        <label for="salon">Salon</label>
+        <select id="salon" name="salon" required>
+          <option value="artbasel-paris">Art Basel Paris</option>
+          <option value="fiac-paris">FIAC Paris</option>
+          <option value="artgeneva">artgenève</option>
+          <option value="other">Autre...</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="formule">Formule</label>
+        <div class="radio-group">
+          <label><input type="radio" name="formule" value="standard" checked /> Standard</label>
+          <label><input type="radio" name="formule" value="premium" /> Premium</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="jours">Durée (en jours)</label>
+        <input type="number" id="jours" name="jours" min="1" max="10" value="3" required />
+      </div>
+
+      <div class="form-group">
+        <label for="personnes">Nombre de personnes</label>
+        <input type="number" id="personnes" name="personnes" min="1" max="10" value="1" required />
+      </div>
+
+      <!-- Nouvelle section confort logement -->
+      <div class="form-group">
+        <label for="confort-logement">Confort du logement</label>
+        <select id="confort-logement" name="confort-logement" required>
+          <option value="basic" selected>Basic</option>
+          <option value="confort">Confort</option>
+          <option value="5etoiles">5 étoiles</option>
+        </select>
+      </div>
+
+      <!-- Nouvelle checkbox accompagnement pro -->
+      <div class="form-group">
+        <label><input type="checkbox" id="accompagnement-pro" name="accompagnement-pro" /> Accompagnement professionnel</label>
+      </div>
+
+      <button type="submit">🔍 Estimer le coût</button>
+    </form>
+
+    <script src="dist/main.js"></script>
+  </div>
+</body>
+</html>
