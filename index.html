@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simulation visite salon</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -12,35 +13,60 @@
     <p>Estimez en quelques clics le coût total de votre déplacement professionnel.</p>
 
     <form id="simulateur-form">
+      <!-- Identité utilisateur -->
+      <div class="form-group">
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" required />
+      </div>
+    
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required />
+      </div>
+    
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+    
+      <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone" name="telephone" required/>
+      </div>
+    
+      <!-- Choix du salon -->
       <div class="form-group">
         <label for="salon">Salon</label>
         <select id="salon" name="salon" required>
           <option value="artbasel-paris">Art Basel Paris</option>
-          <option value="fiac-paris">FIAC Paris</option>
-          <option value="artgeneva">artgenève</option>
-          <option value="other">Autre...</option>
+          <option value="artgeneve">Artgenève</option>
+          <!-- Ajoute d'autres salons ici si nécessaire -->
         </select>
       </div>
 
+      <!-- Choix de la formule -->
       <div class="form-group">
         <label for="formule">Formule</label>
         <div class="radio-group">
           <label><input type="radio" name="formule" value="standard" checked /> Standard</label>
           <label><input type="radio" name="formule" value="premium" /> Premium</label>
+          <label><input type="radio" name="formule" value="VIP" /> VIP</label>
         </div>
       </div>
 
+      <!-- Nombre de jours -->
       <div class="form-group">
         <label for="jours">Durée (en jours)</label>
-        <input type="number" id="jours" name="jours" min="1" max="10" value="3" required />
+        <input type="number" id="jours" name="jours" min="1" max="20" value="2" required />
       </div>
 
+      <!-- Nombre de personnes -->
       <div class="form-group">
         <label for="personnes">Nombre de personnes</label>
-        <input type="number" id="personnes" name="personnes" min="1" max="10" value="1" required />
+        <input type="number" id="personnes" name="personnes" min="1" max="100" value="1" required />
       </div>
 
-      <!-- Nouvelle section confort logement -->
+      <!-- Confort du logement -->
       <div class="form-group">
         <label for="confort-logement">Confort du logement</label>
         <select id="confort-logement" name="confort-logement" required>
@@ -50,14 +76,25 @@
         </select>
       </div>
 
-      <!-- Nouvelle checkbox accompagnement pro -->
+      <!-- Accompagnement professionnel -->
       <div class="form-group">
-        <label><input type="checkbox" id="accompagnement-pro" name="accompagnement-pro" /> Accompagnement professionnel</label>
+        <label>
+          <input type="checkbox" id="accompagnement-pro" name="accompagnement-pro" />
+          Accompagnement professionnel
+        </label>
       </div>
+    
 
+      <!-- Bouton d'envoi -->
       <button type="submit">🔍 Estimer le coût</button>
     </form>
 
+    <div id="devis-resultat" style="display: none; margin-top: 2rem;">
+      <h2>📄 Votre estimation personnalisée</h2>
+      <div id="devis-contenu"></div>
+    </div>
+
+    <button id="download-pdf" style="display: none; margin-top: 1rem;">📥 Télécharger le devis en PDF</button>
     <script src="dist/main.js"></script>
   </div>
 </body>
